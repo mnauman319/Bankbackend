@@ -1,6 +1,5 @@
 package dev.nauman.services;
 
-
 import java.util.Set;
 
 import dev.nauman.entities.Customer;
@@ -9,14 +8,11 @@ public interface CustomerService {
 
 	Customer createCustomer(Customer customer);
 	
-	Customer getCustomerByCId(int cId);
+	Customer getCustomerById(int id);
 	Set<Customer> getAllCustomers();
 	
 	Customer updateCustomer(Customer customer);
 	
-	Customer changePassword(int cId, String password);
-	Customer changeUsername(int cId, String username);
-	
-	boolean deleteCustomerByCId(int cId);
+	boolean deleteCustomerById(int id);
 	boolean deleteCustomerByCustomer(Customer customer);
 }

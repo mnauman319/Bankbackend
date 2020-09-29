@@ -1,16 +1,35 @@
 package dev.nauman.entities;
 
-import java.util.HashSet;
 import java.util.Set;
 
-public class Customer {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-	private int cId = 0;
-	private String username = null;
-	private String password = null;
+@Entity
+public class Customer {
 	
-	private Set<Account> accounts = new HashSet<Account>();
+	@Id @GeneratedValue
+	private int  cId;
+	private String username;
+	private String password;
+	@OneToMany(mappedBy = "Customer")
+	private Set<Account> accounts;
 	
+	public Customer(int cId, String username, String password) {
+		this.cId = cId;
+		this.username = username;
+		this.password = password;
+	}
+	public Customer(int cId, String username, String password, Set<Account> accounts) {
+		this.cId = cId;
+		this.username = username;
+		this.password = password;
+		this.accounts = accounts;
+	}
+	public Customer() {
+	}
 	public int getcId() {
 		return cId;
 	}
@@ -29,24 +48,17 @@ public class Customer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public Set<Account> getAccounts() {
 		return accounts;
 	}
 	public void setAccounts(Set<Account> accounts) {
 		this.accounts = accounts;
 	}
-	public Customer() {
-		super();
-	}
-	public Customer(int cId, String username, String password) {
-		super();
-		this.cId = cId;
-		this.username = username;
-		this.password = password;
-	}
 	@Override
 	public String toString() {
-		return "Customer [cId=" + cId + ", username=" + username + ", password=" + password + "]";
+		return "Customer [cId=" + cId + ", username=" + username + ", password=" + password + ", accounts=" + accounts
+				+ "]";
 	}
+	
+	
 }

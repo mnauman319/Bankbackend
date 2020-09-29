@@ -1,14 +1,30 @@
 package dev.nauman.entities;
 
-import dev.nauman.exceptions.NegativeBalanceException;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-public class Account{
+@Entity
+public class Account {
 
-	private int aId; //account id
-	private int cId; //customer id who owns this account
-	private String accountName; //such as My Savings or Vacation Fund
-	private double balance; //must be positive
+	@Id @GeneratedValue
+	private int aId;
+	@ManyToOne
+	@JoinColumn(name = "cId")
+	private int cId;
+	private String name;
+	private double balance;
 	
+	public Account() {
+	}
+	public Account(int aId, int cId, String name, double balance) {
+		this.aId = aId;
+		this.cId = cId;
+		this.name = name;
+		this.balance = balance;
+	}
 	public int getaId() {
 		return aId;
 	}
@@ -21,45 +37,22 @@ public class Account{
 	public void setcId(int cId) {
 		this.cId = cId;
 	}
-	public String getAccountName() {
-		return accountName;
+	public String getName() {
+		return name;
 	}
-	public void setAccountName(String accountName) {
-		this.accountName = accountName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public double getBalance() {
 		return balance;
 	}
-	public void setBalance(double balance) throws NegativeBalanceException {
-		if(balance < 0) {
-			this.balance = 0;
-			throw new NegativeBalanceException();
-		}else {
-			this.balance = balance;
-		}
-	}
-	public Account() {
-		super();
-	}
-	public Account(int aId, int cId, String accountName, double balance) throws NegativeBalanceException {
-		super();
-		this.aId = aId;
-		this.cId = cId;
-		this.accountName = accountName;
-		if(balance < 0) {
-			this.balance = 0;
-			throw new NegativeBalanceException();
-		}else {
-			this.balance = balance;
-		}
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
 	@Override
 	public String toString() {
-		return "Account [aId=" + aId + ", cId=" + cId + ", accountName=" + accountName + ", balance=" + balance + "]";
+		return "Account [aId=" + aId + ", cId=" + cId + ", name=" + name + ", balance=" + balance + "]";
 	}
-	public boolean equals(Account a) {
-		if(a.aId == this.aId)
-			return true;
-		return false;
-	}
+	
+	
 }

@@ -2,48 +2,48 @@ package dev.nauman.services;
 
 import java.util.Set;
 
-import dev.nauman.daos.CustomerDAO;
-import dev.nauman.daos.CustomerDAOImpl;
-import dev.nauman.entities.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import dev.nauman.entities.Customer;
+import dev.nauman.repositories.CustomerRepository;
+
+@Service
 public class CustomerServiceImpl implements CustomerService {
 
-	private static CustomerDAO cdao = CustomerDAOImpl.getCustomerDAOImpl();
+	@Autowired
+	CustomerRepository crepo;
 	
 	@Override
 	public Customer createCustomer(Customer customer) {
-		return cdao.createCustomer(customer);
+		return crepo.save(customer);
 	}
+
 	@Override
-	public Customer getCustomerByCId(int cId) {
-		return cdao.getCustomerById(cId);
+	public Customer getCustomerById(int id) {
+		return crepo.findById(id).get();
 	}
+
 	@Override
 	public Set<Customer> getAllCustomers() {
-		return cdao.getAllCustomers();
+		return (Set<Customer>) crepo.findAll();
 	}
-	@Override
-	public boolean deleteCustomerByCId(int cId) {
-		return cdao.deleteCustomerById(cId);
-	}
+
 	@Override
 	public Customer updateCustomer(Customer customer) {
-		return cdao.updateCustomer(customer);
+		return crepo.save(customer);
 	}
+
+	@Override
+	public boolean deleteCustomerById(int id) {
+		crepo.delete(this.getCustomerById(id));
+		return true;
+	}
+
 	@Override
 	public boolean deleteCustomerByCustomer(Customer customer) {
-		return this.deleteCustomerByCId(customer.getcId());
+		crepo.delete(customer);
+		return true;
 	}
-	@Override
-	public Customer changePassword(int cId, String password) {
-		Customer customer = this.getCustomerByCId(cId);
-		customer.setPassword(password);
-		return this.updateCustomer(customer);
-	}
-	@Override
-	public Customer changeUsername(int cId, String username) {
-		Customer customer = this.getCustomerByCId(cId);
-		customer.setUsername(username);
-		return this.updateCustomer(customer);
-	}
+	
 }
