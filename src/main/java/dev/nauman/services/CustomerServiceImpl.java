@@ -1,13 +1,16 @@
 package dev.nauman.services;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import dev.nauman.entities.Customer;
 import dev.nauman.repositories.CustomerRepository;
 
+@Component
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -25,8 +28,8 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Set<Customer> getAllCustomers() {
-		return (Set<Customer>) crepo.findAll();
+	public List<Customer> getAllCustomers() {
+		return (List<Customer>) crepo.findAll();
 	}
 
 	@Override

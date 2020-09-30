@@ -1,18 +1,18 @@
 package dev.nauman.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Account")
 public class Account {
 
 	@Id @GeneratedValue
 	private int aId;
-	@ManyToOne
-	@JoinColumn(name = "cId")
+	@Column(name = "CUST_ID")
 	private int cId;
 	private String name;
 	private double balance;
