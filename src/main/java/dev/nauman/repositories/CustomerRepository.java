@@ -10,4 +10,5 @@ import dev.nauman.entities.Customer;
 @Repository
 public interface CustomerRepository extends CrudRepository<Customer, Integer>{
 
+	Customer findCustomerByUsernameAndPassword(String username, String password);
 }

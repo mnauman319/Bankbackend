@@ -1,6 +1,6 @@
 package dev.nauman.services;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +25,8 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
-	public Set<Account> getAllAccounts() {
-		return (Set<Account>) arepo.findAll();
+	public List<Account> getAllAccounts() {
+		return (List<Account>) arepo.findAll();
 	}
 
 	@Override
@@ -44,6 +44,21 @@ public class AccountServiceImpl implements AccountService{
 	public boolean deleteAccount(Account account) {
 		arepo.delete(account);
 		return true;
+	}
+
+	@Override
+	public List<Account> getGreaterThan(double value) {
+		return arepo.findByBalanceGreaterThan(value);
+	}
+
+	@Override
+	public List<Account> getLessThan(double value) {
+		return arepo.findByBalanceLessThan(value);
+	}
+
+	@Override
+	public List<Account> getGreaterThanAndLessThan(double lValue, double hValue) {
+		return arepo.findByBalanceLessThanAndBalanceGreaterThan(lValue,hValue);
 	}
 
 	

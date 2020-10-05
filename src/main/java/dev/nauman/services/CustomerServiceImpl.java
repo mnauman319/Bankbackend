@@ -1,7 +1,6 @@
 package dev.nauman.services;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -47,6 +46,11 @@ public class CustomerServiceImpl implements CustomerService {
 	public boolean deleteCustomerByCustomer(Customer customer) {
 		crepo.delete(customer);
 		return true;
+	}
+
+	@Override
+	public Customer getCustomerByUsernameAndPassword(String username, String password) {
+		return crepo.findCustomerByUsernameAndPassword(username, password);
 	}
 	
 }
