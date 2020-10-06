@@ -10,8 +10,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import dev.nauman.entities.Account;
 import dev.nauman.entities.Customer;
-import dev.nauman.repositories.AccountRepository;
-import dev.nauman.repositories.CustomerRepository;
+import dev.nauman.services.AccountServiceImpl;
+import dev.nauman.services.CustomerServiceImpl;
 
 @SpringBootApplication
 @EntityScan("dev.nauman.entities")
@@ -24,16 +24,16 @@ public class SimpleBankApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(CustomerRepository cRepository,AccountRepository aRepository) {
+	CommandLineRunner runner(CustomerServiceImpl cserve,AccountServiceImpl aserve) {
 		return args ->{
-			cRepository.save(new Customer(0,"Dan","password"));
-			cRepository.save(new Customer(0,"Mike","password"));
-			cRepository.save(new Customer(0,"Rogger","password",true));
-			aRepository.save(new Account(0, 1, "My Savings", 14000));
-			aRepository.save(new Account(0, 1, "My Checking", 140));
-			aRepository.save(new Account(0, 2, "My Savings", 21000));
-			aRepository.save(new Account(0, 2, "My Checking", 2400));
-			aRepository.save(new Account(0, 2, "My Vacaction Fund", 10000));
+			 cserve.createCustomer(new Customer(0,"Dan","password"));
+			 cserve.createCustomer(new Customer(0,"Mike","password"));
+			 cserve.createCustomer(new Customer(0,"Rogger","password",true));
+			aserve.createAccount(new Account(0, 1, "My Savings", 14000));
+			aserve.createAccount(new Account(0, 1, "My Checking", 140));
+			aserve.createAccount(new Account(0, 2, "My Savings", 21000));
+			aserve.createAccount(new Account(0, 2, "My Checking", 2400));
+			aserve.createAccount(new Account(0, 2, "My Vacaction Fund", 10000));
 		};
 	}
 	

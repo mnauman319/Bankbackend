@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dev.nauman.entities.Account;
+import dev.nauman.entities.Transaction;
 import dev.nauman.repositories.AccountRepository;
 
 @Service
@@ -13,10 +14,14 @@ public class AccountServiceImpl implements AccountService{
 
 	@Autowired
 	AccountRepository arepo;
+	@Autowired
+	TransactionServiceImpl tserve;
 	
 	@Override
 	public Account createAccount(Account account) {
-		return arepo.save(account);
+		account = arepo.save(account);
+		tserve.saveTransaction(new Transaction(0, account, 0, account.getBalance()));
+		return account;
 	}
 
 	@Override
@@ -31,6 +36,7 @@ public class AccountServiceImpl implements AccountService{
 
 	@Override
 	public Account updateAccount(Account account) {
+		tserve.createTransaction(this.getAccountById(account.getaId()), account);
 		return arepo.save(account);
 	}
 

@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Table(name = "Account")
 public class Account {
 
-	@Id @GeneratedValue
+	@Id @GeneratedValue @Column(name = "ACC_ID")
 	private int aId;
 	@Column(name = "CUST_ID")
 	private int cId;

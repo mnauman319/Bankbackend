@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -18,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "Customer")
 public class Customer {
 	
-	@Id @GeneratedValue @Column(name = "c_id")
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) @Column(name = "c_id")
 	private int  cId;
 	private String username;
 	private String password;
