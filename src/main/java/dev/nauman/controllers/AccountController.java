@@ -68,7 +68,7 @@ public class AccountController {
 	}
 	@RequestMapping(value = "customers/{cId}/accounts", method = RequestMethod.PUT)
 	public Account updateAccount(@RequestBody Account account) {
-		return aserv.createAccount(account);
+		return aserv.updateAccount(account);
 	}
 	@RequestMapping(value = "customers/{cId}/accounts/{aId}", method = RequestMethod.DELETE)
 	public boolean deleteAccount(@PathVariable Integer aId) {

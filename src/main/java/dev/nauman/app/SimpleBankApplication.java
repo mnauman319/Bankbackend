@@ -1,5 +1,6 @@
 package dev.nauman.app;
 
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,7 +19,6 @@ import dev.nauman.services.CustomerServiceImpl;
 @ComponentScan("dev.nauman")
 @EnableJpaRepositories("dev.nauman.repositories")
 public class SimpleBankApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(SimpleBankApplication.class, args);
 	}
