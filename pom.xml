@@ -8,8 +8,8 @@
 		<version>2.3.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>dev.kahoot</groupId>
-	<artifactId>KahootProject</artifactId>
+	<groupId>dev.nauman</groupId>
+	<artifactId>SimpleBankProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SimpleBank</name>
 	<description>Demo project for Spring Boot</description>
